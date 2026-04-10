@@ -1,0 +1,37 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    git \
+    make \
+    bc \
+    bison \
+    build-essential \
+    curl \
+    flex \
+    gcc-multilib \
+    g++-multilib \
+    gnupg \
+    libelf-dev \
+    libssl-dev \
+    lzop \
+    openssl \
+    p7zip-full \
+    python3 \
+    python-is-python3 \
+    rsync \
+    schedtool \
+    squashfs-tools \
+    unzip \
+    xz-utils \
+    cpio \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y clang-11 lld-11 \
+    && ln -s /usr/bin/clang-11 /usr/bin/clang \
+    && ln -s /usr/bin/ld.lld-11 /usr/bin/ld.lld \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+ENTRYPOINT ["/bin/bash"]
