@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     squashfs-tools \
     unzip \
     xz-utils \
+    zstd \
     cpio \
     && rm -rf /var/lib/apt/lists/*
 
