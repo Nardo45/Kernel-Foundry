@@ -31,7 +31,7 @@ You will need `fastboot` installed on your host machine to test and flash the re
 2. **Start the Container**:
    Mount your local work directory to the container's `/workspace`:
    ```bash
-   podman run -it --rm -v $(pwd):/workspace lineage-kernel-builder
+   podman run -it --rm -v $(pwd):/workspace:Z lineage-kernel-builder
    ```
 
 ---
