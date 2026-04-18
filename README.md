@@ -38,6 +38,7 @@ The project is organized by device manufacturer and codename to allow for easy s
 | Device | Model | Code-name | Status |
 | :--- | :--- | :--- | :--- |
 | **Motorola Edge 2021** | XT2141-2 | berlna | ✅ Stable |
+| **Samsung Galaxy Tab A7** | SM-T500 | gta4lwifi | ✅ Stable |
 
 ---
 
@@ -45,19 +46,21 @@ The project is organized by device manufacturer and codename to allow for easy s
 
 While each device has its own specific `README.md` inside its folder, the general workflow remains consistent:
 
-1.  **Enter the Device Directory:**
+1.  **Prepare Magisk Tools:**
+    Run the `run.sh` script at the root of the project to generate the `magiskboot` executable. Once generated, move the file into the specific device folder you intend to work with.
+2.  **Enter the Device Directory:**
     ```bash
     cd devices/your-device-name
     ```
-2.  **Build the Environment:**
+3.  **Build the Environment:**
     ```bash
     podman build -t kernel-builder-name .
     ```
-3.  **Run the Container:**
+4.  **Run the Container:**
     ```bash
     podman run -it --rm -v $(pwd):/workspace kernel-builder-name
     ```
-4.  **Setup & Build:**
+5.  **Setup & Build:**
     Inside the container, run the `setup_env.sh` (once) and `source restore_env.sh` (every session) before running `make`.
 
 ---

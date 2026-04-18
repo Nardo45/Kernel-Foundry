@@ -1,0 +1,45 @@
+diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+index 8834fc9bf..d15f5583b 100644
+--- a/drivers/clk/qcom/Makefile
++++ b/drivers/clk/qcom/Makefile
+@@ -1,4 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0
++ccflags-y += -I$(src)
+ obj-$(CONFIG_COMMON_CLK_QCOM) += clk-qcom.o
+ 
+ clk-qcom-y += common.o
+diff --git a/techpack/camera-bengal/drivers/cam_req_mgr/Makefile b/techpack/camera-bengal/drivers/cam_req_mgr/Makefile
+index 542648a28..b48761e69 100644
+--- a/techpack/camera-bengal/drivers/cam_req_mgr/Makefile
++++ b/techpack/camera-bengal/drivers/cam_req_mgr/Makefile
+@@ -5,6 +5,7 @@ ccflags-y += -I$(srctree)/techpack/camera-bengal/drivers/cam_core
+ ccflags-y += -I$(srctree)/techpack/camera-bengal/drivers/cam_smmu/
+ ccflags-y += -I$(srctree)/techpack/camera-bengal/drivers/cam_utils
+ ccflags-y += -I$(srctree)/
++ccflags-y += -I$(src)
+ 
+ obj-$(CONFIG_SPECTRA_CAMERA) += cam_req_mgr_core.o\
+ 				cam_req_mgr_dev.o \
+diff --git a/techpack/camera-bengal/drivers/cam_sensor_module/cam_cci/Makefile b/techpack/camera-bengal/drivers/cam_sensor_module/cam_cci/Makefile
+index df2920a5c..c26147ed5 100644
+--- a/techpack/camera-bengal/drivers/cam_sensor_module/cam_cci/Makefile
++++ b/techpack/camera-bengal/drivers/cam_sensor_module/cam_cci/Makefile
+@@ -8,5 +8,6 @@ ccflags-y += -I$(srctree)/techpack/camera-bengal/drivers/cam_sensor_module/cam_s
+ ccflags-y += -I$(srctree)/techpack/camera-bengal/drivers/cam_sensor_module/cam_sensor_utils
+ ccflags-y += -I$(srctree)/techpack/camera-bengal/drivers/cam_smmu
+ ccflags-y += -I$(srctree)
++ccflags-y += -I$(src)
+ 
+ obj-$(CONFIG_SPECTRA_CAMERA) += cam_cci_dev.o cam_cci_core.o cam_cci_soc.o
+diff --git a/techpack/display/pll/Makefile b/techpack/display/pll/Makefile
+index 0b29a90ca..99a511c77 100644
+--- a/techpack/display/pll/Makefile
++++ b/techpack/display/pll/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ 
+ ccflags-y := -I$(srctree)/drivers/clk/qcom/
++ccflags-y += -I$(src)
+ 
+ obj-$(CONFIG_QCOM_MDSS_PLL) += pll_util.o
+ obj-$(CONFIG_QCOM_MDSS_PLL) += pll_drv.o

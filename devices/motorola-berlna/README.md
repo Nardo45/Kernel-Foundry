@@ -1,11 +1,17 @@
 # Motorola Edge 2021 (XT2141-2) Standalone Kernel Environment
 
-This repository provides a fully reproducible, containerized environment for building the Motorola Edge 2021 (**XT2141-2**) kernel without needing the massive 300GB+ Android/LineageOS source tree.
+### ⚠️ Hardware Warning
 
----
-
-## ⚠️ Hardware Warning
 This environment was specifically developed and tested on the **Motorola Edge 2021 Model XT2141-2**. While this is generally the only model for this device, if your model differs, proceed with caution. The kernel configuration and patches provided are tailored for the XT2141-2 and may not be compatible with other variants.
+
+However, if you're lucky, the environment may be complete for your specific model as well. You can attempt to use your own configuration by extracting the `config.gz` file pulled from your device and moving it to `.config` under the kernel path:
+
+```bash
+cd /workspace/kernel/motorola/sm7325
+# Place your extracted config here as .config
+```
+
+You can then test if the kernel compiles successfully for your model and results in a booting device. If it works, please create an issue on GitHub so the device entry can be slightly modified to account for the new model and have better automation for your device.
 
 ---
 
@@ -23,7 +29,7 @@ You will need `fastboot` installed on your host machine to test and flash the re
 ## Step 1: Building and Entering the Environment
 
 1. **Build the Container Image**:
-   Navigate to the `motorola-edge-2021` directory and run:
+   Navigate to the `motorola-berlna` directory and run:
    ```bash
    podman build -t lineage-kernel-builder .
    ```
@@ -70,28 +76,34 @@ make -j$(nproc)
 
 The file `kernel_work.tar.zst` contains the necessary tools and a stock boot image pulled from a device running LineageOS 23.2.
 
-1. **Extract the Work Folder**:
-   ```bash
-   tar -xf kernel_work.tar.zst
-   cd kernel_work
-   ```
+1.  **Extract the Work Folder**:
+    ```bash
+    tar -xf kernel_work.tar.zst
+    ```
 
-2. **Unpack the Stock Image**:
-   The folder includes `stock_boot_a.img`. Unpack it:
-   ```bash
-   ./magiskboot unpack stock_boot_a.img
-   ```
+2.  **Move Magiskboot**:
+    If you ran the `run.sh` script at the root of the project as instructed earlier and moved the `magiskboot` executable to the current device folder, move it into the work directory now:
+    ```bash
+    mv magiskboot kernel_work/
+    cd kernel_work
+    ```
 
-3. **Replace the Kernel**:
-   Replace the unpacked kernel file with your newly recompiled Image:
-   ```bash
-   cp /workspace/kernel/motorola/sm7325/arch/arm64/boot/Image kernel
-   ```
+3.  **Unpack the Stock Image**:
+    The folder includes `stock_boot_a.img`. Unpack it using the tool you just moved:
+    ```bash
+    ./magiskboot unpack stock_boot_a.img
+    ```
 
-4. **Repack the Image**:
-   ```bash
-   ./magiskboot repack stock_boot_a.img new_boot.img
-   ```
+4.  **Replace the Kernel**:
+    Replace the unpacked kernel file with your newly recompiled Image:
+    ```bash
+    cp /workspace/kernel/motorola/sm7325/arch/arm64/boot/Image kernel
+    ```
+
+5.  **Repack the Image**:
+    ```bash
+    ./magiskboot repack stock_boot_a.img new_boot.img
+    ```
 
 ---
 
