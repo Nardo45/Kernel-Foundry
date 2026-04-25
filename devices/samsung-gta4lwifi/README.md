@@ -7,7 +7,7 @@ This environment was specifically developed and tested on the **Samsung Galaxy T
 However, if you're lucky, the environment may be complete for your specific model as well. You can attempt to use your own configuration by extracting the `config.gz` file pulled from your device and moving it to `.config` under the kernel path:
 
 ```bash
-cd /workspace/kernel/samsung/gta4lwifi
+cd /workspace/kernel/samsung/sm6115
 # Place your extracted config here as .config
 ```
 
@@ -62,7 +62,7 @@ Once you are inside the container, you must prepare the source code and environm
 
 ## Step 3: Kernel Configuration & Compilation
 
-* **config.gz**: This is the stock configuration file pulled directly from a device running **LineageOS**. The `setup_env.sh` script automatically extracts this to `/workspace/kernel/samsung/gta4lwifi/.config`.
+* **config.gz**: This is the stock configuration file pulled directly from a device running **LineageOS**. The `setup_env.sh` script automatically extracts this to `/workspace/kernel/samsung/sm6115/.config`.
 
 To compile the kernel, navigate to the kernel source and run:
 ```bash
@@ -141,7 +141,6 @@ Once restored, you can return to the container to adjust your configuration and 
 | `standalone_fixes.patch` | Fixes for standalone Samsung kernel builds. |
 | `setup_env.sh` | Automates cloning and patching. |
 | `restore_env.sh` | Sets `PATH`, `ARCH`, and `LLVM` variables. |
-| `patch-notes.txt` | Documentation regarding changes made to the kernel source. |
 
 ---
 
